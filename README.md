@@ -9,7 +9,7 @@ The objective of this exercise is to give you hands-on experience with the codin
  - If you have more experience, help guide those around you by explaining what each command or action does. Teaching will help reinforce your own understanding.
 
 ## Exercise steps:
-1. **Clone this repository**:
+### 1. **Clone this repository**:
 Open the terminal on your computer in the folder your want to make the repository.
  - **Mac Users**:
             - Navigate to the folder where you want to store the remote repository.
@@ -31,4 +31,28 @@ Explore the folder structure:
 ```bash
 ls
 ```
+### 2. Download Just:
 
+|Platform|Commands|
+|-------|------|
+|Windows|winget install Casey.Just|
+|Mac|brew install just|
+
+Ensure it is installed:
+```bash
+just --version
+```
+
+Understand the commands available to you:
+```bash
+just help
+```
+
+### 3. Run a just recipe to create a new folder/file structure for data Pull 1
+Use the just add-new-pull to easily create the folders necessary for admin data pull 1, and copy over template versions of your deid, clean, and validate scripts to the appropriate folders.
+
+Note that you'll need to replace the two [arguments] below with the appropriate value!
+```bash
+just add-new-pull [pull-number] [coding-language]
+```
+*extra*: What happens if you specify a non coding language in the second argument?
