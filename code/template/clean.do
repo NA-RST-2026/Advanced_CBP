@@ -1,5 +1,5 @@
 * ------------------------------------------------------------------------------------------------ *
-*             RST 2025 Data Coding Best Practices Exercise - Data Cleaning                         *
+*             RST 2026 Data Coding Best Practices Exercise - Data Cleaning                         *
 *                                                                                                  *
 * Provided are example steps needed to clean the code. Follow the instructions to complete the     *
 * exercise. Remember to follow best practices discussed in the lecture.                            *

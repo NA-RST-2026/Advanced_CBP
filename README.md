@@ -94,3 +94,61 @@ Look back at the table above, and run the commands necessary to document the pac
 If you finish before we're ready to move on, try adding and then removing a couple other packages that you're familiar with from your own work.
 
 ## Exercise part 3: Main/orchestrator scripts and config files
+Let's now build our main script and configuration files with the appropriate set up commands and globals.
+
+### Step 1: Fill in setup commands
+Open the appropriate 00_config file for your coding language, and follow the instructions to write the appropriate global variables. These are:
+|Language|Packages|
+|-------|------|
+|All| The random seed <br>The num_pulls and folder path globals|
+|Stata|The version|
+|R & Stata| The working directory|
+Specifically, try to create globals for sub-directories in an iterative way, so that if you change the top-folder name, you don't have to change all of the sub-directory globals!
+
+*Note*: I know it feels silly to write and pull in a config file with only a few globals in it, but this is good practice for complex projects in which you might have 10s-100s of configuration globals that may change frequently!
+
+### Step 2: Read the config file in the main script
+Pull the config script into the main script and run it so that the display commands already in the main script correctly display the values you set.
+
+*Note: If you're working in python, I've gone ahead and added the first part of the import script -- this is likely more outside of typical wheelhouses than the Stata/R version*
+
+After that, add the globals to the correct place in the main file to actually set the seed and working directory (R and Stata).
+
+### Step 3: Add calls for the clean and validate scripts
+Even though we haven't completed adapting them yet, we can go ahead and place calls to the clean and validation scripts in the main script.
+
+We can do this in Stata with:
+```Stata
+do [dofile].do
+```
+
+And in R with:
+```R
+source("rscript.R")
+```
+
+And in python with
+```python
+from script import function1, function2,...
+```
+
+## Exercise part 4: Data validation
+In the lab, you'll write more data validation checks yourself. For now, open documentation/codebook.pdf and identify some validations you may want to write.
+
+## Exercise part 5: De-identification
+Before working on the data more fully, we want to de-identify the direct identifiers; but we may need the names in the future for merging into other admin data, so let's keep them in a crosswalk in our encrypted folder (data/raw).
+
+The code to do this is already at the top of the "de_identification" scripts -- run the code from your preferred language and look at the output
+
+## Lab Exercise:
+Now work in your groups to complete the data validation, cleaning, and de-identification tasks in the associated scripts.
+
+If you want to collaborate on the same files, you can use what you learned in the git/github lecture to work on the same branch:
+```bash
+git checkout -b [branch-name]
+git add [filename]
+git commit -m "[commit message]"
+git push origin [branch-name]
+```
+Then you can create and merge pull requests on that branch! (pls don't touch the main branch)
+But this isn't necessary if you want to focus on the tasks at hand.

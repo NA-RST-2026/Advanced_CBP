@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------------------------ #
-#            RST 2025 Data Coding Best Practices Exercise - De-identification                      #
+#            RST 2026 Data Coding Best Practices Exercise - De-identification                      #
 #                                                                                                  #
 # The first section is the starter code to de-identify our example data.                           #
 # The second section is a set of de-identification exercises to do after you finish                #

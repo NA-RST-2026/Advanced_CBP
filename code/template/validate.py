@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------------------------ #
-#            RST 2025 Data Coding Best Practices Exercise - Data Validation                        #
+#            RST 2026 Data Coding Best Practices Exercise - Data Validation                        #
 #                                                                                                  #
 # Provided is the starter code to validate our example data. Continue working on the code to       #
 # check for the outlined issues. Remember to make error messages descriptive so you know what      #
