@@ -59,6 +59,9 @@ just add-new-pull [pull-number] [coding-language]
 
 Now let's explore what happened -- you can either do this in the terminal through the combination of `cd` (changing directory) and `ls` (listing the files/folders in the current or specified directory), or by just going back to your normal file/folder explorer on your computer.
 
+### Extra credit:
+If you finish the above before we are ready to move on, see if you can create your own just recipe! Use your knowledge from the git/github lecture to create a recipe that would: i) Create and checkout to a new git branch called "dev"; ii) run git status; iii) checkout back to main; and iv) delete the dev branch (perhaps the least useful just recipe ever, but good to learn how to string together commands)
+
 ## Exercise part 2: Virtual Environments
 
 ### Step 1: Setting up the virtual environment
@@ -84,4 +87,10 @@ Now let's add our first package! Add the following packages that we'll use in th
 
 ### Step 3: Updating the metadata
 Look back at the table above, and run the commands necessary to document the packages that are now part of your project.
+
 *Question*: If you're using Stata, where are you going to save that information? The readme? A do-file? Both? Up to you, but needs to go somewhere!
+
+### Extra credit:
+If you finish before we're ready to move on, try adding and then removing a couple other packages that you're familiar with from your own work.
+
+## Exercise part 3: Main/orchestrator scripts and config files
