@@ -38,6 +38,10 @@ ls
 |Windows|winget install Casey.Just|
 |Mac|brew install just|
 
+Winget should come on all modern Windows systems; Homebrew may need to be downloaded for Mac. You can check if you already have it installed by running `brew --version`. If you want to download it, see the [homebrew page](https://brew.sh/).
+
+If brew/winget don't work for you, you can access the release from the Just github repo [here](https://github.com/casey/just/releases). You will need to add it to your PATH in order to be able to run it (see the appendix below). 
+
 Ensure it is installed:
 ```bash
 just --version
@@ -97,7 +101,7 @@ If you finish before we're ready to move on, try adding and then removing a coup
 Let's now build our main script and configuration files with the appropriate set up commands and globals.
 
 ### Step 1: Fill in setup commands
-Open the appropriate 00_config file for your coding language, and follow the instructions to write the appropriate global variables. These are:
+Open the appropriate config file for your coding language, and follow the instructions to write the appropriate global variables. These are:
 |Language|Packages|
 |-------|------|
 |All| The random seed <br>The num_pulls and folder path globals|
@@ -152,3 +156,36 @@ git push origin [branch-name]
 ```
 Then you can create and merge pull requests on that branch! (pls don't touch the main branch)
 But this isn't necessary if you want to focus on the tasks at hand.
+
+## Appendix 1: Installing just from source files
+
+### Step 1: Open your terminal
+
+### Step 2: Create a Safe Folder for the App
+Run this command to create a hidden folder in your home directory dedicated to custom tools:
+```bash
+mkdir -p ~/.local/bin
+```
+
+### Step 3: Move the File
+Move the downloaded `just` file from your Downloads folder into that new safe folder:
+```bash
+mv ~/Downloads/just ~/.local/bin/
+```
+
+### Step 4: Make It Executable
+Tell your Mac that this file is allowed to run as a program:
+```bash
+chmod +x ~/.local/bin/just
+```
+
+### Step 5: Update Your Terminal Settings
+Your Mac needs to be told to check this new folder every time you type a command. 
+
+Run this command to save that instruction into your terminal's settings profile:
+```bash
+echo 'export PATH="HOME/.local/bin:PATH"' >> ~/.zshrc
+```
+
+### Step 6: Reload and Test
+Close your terminal and open a new one, or run this command to apply the changes instantly:
