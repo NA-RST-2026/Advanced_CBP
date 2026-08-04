@@ -17,5 +17,7 @@ from config import NUM_PULLS, DATA_DIR, SEED ### Anything else?
 print(f"Number of pulls: {NUM_PULLS}")
 print(f"Data directory: {DATA_DIR}")
 print(f"Raw data directory: ")
+print(f"De-identified data directory: ")
+print(f"Clean data directory: ")
 
 random.seed(SEED)

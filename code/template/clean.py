@@ -11,7 +11,7 @@ from pathlib import Path
 import pandas as pd
 
 # Load the de-identified data
-data = pd.read_csv(Path(raw_data) / f"pulls1_{pull_tot}_deid.csv")
+data = pd.read_csv(Path(DEID_DATA) / f"pulls1_{NUM_PULLS}_deid.csv")
 
 ####################################################################################################
 # STEP A -- Rename the variables to be more intuitive. (refer to the code book)
@@ -37,3 +37,5 @@ data = pd.read_csv(Path(raw_data) / f"pulls1_{pull_tot}_deid.csv")
 ####################################################################################################
 # STEP E -- Save the data without overriding the original data.
 ####################################################################################################
+
+data.to_csv(Path(CLEAN_DATA) / f"cleaned_data_pulls1_{NUM_PULLS}.csv", index=False)

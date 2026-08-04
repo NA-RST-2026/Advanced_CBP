@@ -9,7 +9,7 @@
 version 16
 set more off
 
-use ${raw_data}/pulls1_${pull_tot}_deid.dta, clear
+use "${deid_data}/pulls1_${num_pulls}_deid.dta", clear
 
 ****************************************************************************************************
 *STEP A -- Rename the variables to be more intuitive. (refer to the code book)
@@ -32,4 +32,4 @@ use ${raw_data}/pulls1_${pull_tot}_deid.dta, clear
 *STEP E -- Save the data without overriding the original data.
 ****************************************************************************************************
 
-save ${clean_data}/cleaned_data_pulls1_${pull_tot}.dta, replace
+save "${clean_data}/cleaned_data_pulls1_${num_pulls}.dta", replace

@@ -11,7 +11,7 @@ library(dplyr)
 library(labelled)
 
 # Load the de-identified data
-data <- read.csv(file.path(raw_data, paste0("pulls1_", pull_tot, "_deid.csv")))
+data <- read.csv(file.path(DEID_DATA, paste0("pulls1_", NUM_PULLS, "_deid.csv")))
 
 ####################################################################################################
 # STEP A -- Rename the variables to be more intuitive. (refer to the code book)
@@ -38,3 +38,4 @@ data <- read.csv(file.path(raw_data, paste0("pulls1_", pull_tot, "_deid.csv")))
 # STEP E -- Save the data without overriding the original data.
 ####################################################################################################
 
+write.csv(data, file.path(CLEAN_DATA, paste0("cleaned_data_pulls1_", NUM_PULLS, ".csv")), row.names = FALSE)

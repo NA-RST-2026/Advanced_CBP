@@ -16,6 +16,9 @@
 
 cat("Number of pulls: ", NUM_PULLS, "\n")
 cat("Data directory: ", DATA_DIR, "\n")
+cat("Raw data directory: ", RAW_DATA, "\n")
+cat("De-identified data directory: ", DEID_DATA, "\n")
+cat("Clean data directory: ", CLEAN_DATA, "\n")
 
 ### Step 2: Setting the working directory ####
 user <- Sys.info()["user"]

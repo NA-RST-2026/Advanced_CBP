@@ -12,7 +12,7 @@ set more off
 
 
 ********** In-lecture example: Masking names **********************************
-use ${id_data}/pulls1_${pull_tot}.dta, clear
+use "${raw_data}/pulls1_${num_pulls}.dta", clear
 
 ***** First create the crosswalk: ***************
 ** Preserve, keep only the vars needed for the crosswalk
@@ -24,20 +24,20 @@ gen full_name = Q1 + " " + Q2
 drop Q1 Q2
 duplicates drop
 
-** Save the crosswalk into the identified folder as a csv
-export delimited ${id_data}/Name_crosswalk.csv,replace
+** Save the crosswalk into the encrypted raw folder as a csv
+export delimited "${raw_data}/Name_crosswalk.csv", replace
 
 ** Restore, mask the identifying variables, and save
 restore
 foreach id_var in Q1 Q2{
 	replace `id_var' = "*** REMOVED FOR RESPONDENT PRIVACY ***"
 }
-save ${raw_data}/pulls1_${pull_tot}_deid.dta, replace
+save "${deid_data}/pulls1_${num_pulls}_deid.dta", replace
 
 ********** Post-lecture exercise: **********************************************
 ***** Prepare the clean data that doesn't have direct identifiers for 
 * data publication -- we want to de-identify indirect identifiers now
-use ${clean_data}/cleaned_data_pulls1_3.dta, clear
+use "${clean_data}/cleaned_data_pulls1_${num_pulls}.dta", clear
 
 *STEP A -- Aggregate birth month to ranges and mask birth date
 

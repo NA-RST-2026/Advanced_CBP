@@ -22,8 +22,8 @@ cat("=== Data Validation Log ===\n")
 cat("Date:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n\n")
 
 # Check to see that id uniquely identifies observations in all pulls and that IDs are in the same format.
-for (i in 1:pull_tot) { # pull_tot set in main R file to indicate the total pull files
-  data_pull <- read.csv(file.path(id_data, paste0("pull", i, ".csv")))
+for (i in 1:NUM_PULLS) { # NUM_PULLS set in your config file
+  data_pull <- read.csv(file.path(RAW_DATA, "pulls", paste0("pull_", i), paste0("pull", i, ".csv")))
   
   # Format of ID variable?
   cat("Dataset pull", i, "ID format:\n")
@@ -64,14 +64,14 @@ for (i in 1:pull_tot) { # pull_tot set in main R file to indicate the total pull
 }
 
 # Append the pulls together
-data_combined <- read.csv(file.path(id_data, "pull3.csv"))
-data_pull1 <- read.csv(file.path(id_data, "pull1.csv"))
-data_pull2 <- read.csv(file.path(id_data, "pull2.csv"))
+pull_dfs <- lapply(1:NUM_PULLS, function(i) {
+  read.csv(file.path(RAW_DATA, "pulls", paste0("pull_", i), paste0("pull", i, ".csv")))
+})
 
-data_combined <- bind_rows(data_combined, data_pull1, data_pull2) %>%
+data_combined <- bind_rows(pull_dfs) %>%
   arrange(id, Q1, Q2, pull)
 
-write.csv(data_combined, file.path(id_data, paste0("pulls1_", pull_tot, ".csv")),row.names = F)
+write.csv(data_combined, file.path(RAW_DATA, paste0("pulls1_", NUM_PULLS, ".csv")), row.names = FALSE)
 
 # Verify we have appropriate follow-up information on the people is consistent.
 
@@ -86,7 +86,7 @@ follow_up_check <- data_combined %>%
 
 # Check for missing follow-ups
 missing_followups <- follow_up_check %>%
-  filter(multiple_pulls == 1 & !sapply(pulls, function(x) pull_tot %in% x))
+  filter(multiple_pulls == 1 & !sapply(pulls, function(x) NUM_PULLS %in% x))
 
 if (nrow(missing_followups) > 0) {
   cat("Some people did not have a follow up recorded in data. See the following:\n")

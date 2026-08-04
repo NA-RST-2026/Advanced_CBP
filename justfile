@@ -14,6 +14,8 @@ add-new-pull pull_number coding_language:
     mkdir -p "code/deid/pull_{{pull_number}}"
     mkdir -p "code/validate/pull_{{pull_number}}"
     mkdir -p "data/raw/pulls/pull_{{pull_number}}"
+    mkdir -p "data/deid"
+    mkdir -p "data/clean"
     if [ "{{coding_language}}" = "Stata" ]; then
         cp code/template/clean.do "code/clean/pull_{{pull_number}}/clean.do"
         cp code/template/de_identification.do "code/deid/pull_{{pull_number}}/de_identification.do"

@@ -11,7 +11,7 @@
 library(dplyr)
 
 ######### In-lecture example: Masking names ##################################
-data <- read.csv(file.path(id_data, paste0("pulls1_", pull_tot, ".csv")))
+data <- read.csv(file.path(RAW_DATA, paste0("pulls1_", NUM_PULLS, ".csv")))
 
 ##### First create the crosswalk: ###############
 # Create the full name variable, drop the first and last names, and drop duplicates
@@ -21,8 +21,8 @@ crosswalk <- data %>%
   select(id, full_name) %>%
   distinct()
 
-# Save the crosswalk into the identified folder as a csv
-write.csv(crosswalk, file.path(id_data, "Name_crosswalk.csv"),row.names = F)
+# Save the crosswalk into the encrypted raw folder as a csv
+write.csv(crosswalk, file.path(RAW_DATA, "Name_crosswalk.csv"), row.names = FALSE)
 
 # Mask the identifying variables and save
 data_masked <- data %>%
@@ -31,13 +31,12 @@ data_masked <- data %>%
     Q2 = "*** REMOVED FOR RESPONDENT PRIVACY ***"
   )
 
-write.csv(data_masked, file.path(raw_data, paste0("pulls1_", pull_tot, "_deid.csv")),row.names = F)
+write.csv(data_masked, file.path(DEID_DATA, paste0("pulls1_", NUM_PULLS, "_deid.csv")), row.names = FALSE)
 
 ######### Post-lecture exercise: ##############################################
 ##### Prepare the clean data that doesn't have direct identifiers for 
 # data publication -- we want to de-identify indirect identifiers now
-clean_data_path <- file.path(clean_data, "cleaned_data_pulls1_3.csv")
-data_clean <- read.csv(clean_data_path)
+data_clean <- read.csv(file.path(CLEAN_DATA, paste0("cleaned_data_pulls1_", NUM_PULLS, ".csv")))
 
 # STEP A -- Aggregate birth month to ranges and mask birth date
 # Mask birth date

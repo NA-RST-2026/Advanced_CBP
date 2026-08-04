@@ -15,16 +15,19 @@
 
 di "$num_pulls"
 di "$data_dir"
+di "$raw_data"
+di "$deid_data"
+di "$clean_data"
 
 **** Setting the working directory ****
 global user = c(username)
 
-if $user == "jackcavanagh{
+if "$user" == "jackcavanagh"{
     cd $jack_dir
 }
 
 **** Set your Stata username here!
-if $user == ""{
+if "$user" == ""{
     cd $my_dir
 }
 

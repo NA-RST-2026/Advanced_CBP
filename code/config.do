@@ -8,8 +8,11 @@ global num_pulls
 
 ** Set data, code, and output directories
 global data_dir "data/"
+* Tip: define sub-directory globals from data_dir so renaming the top folder only requires one change
+global raw_data 
+global deid_data 
+global clean_data 
 
 ** Working directory global
-global jack_dir  "~/Documents/RST_2026_Data_Coding_Best_Practices_Exercise/"
+global jack_dir  "~/Documents/Advanced_CBP/"
 global my_dir ""
-

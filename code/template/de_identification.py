@@ -12,7 +12,7 @@ from pathlib import Path
 import pandas as pd
 
 ######### In-lecture example: Masking names ##################################
-data = pd.read_csv(Path(id_data) / f"pulls1_{pull_tot}.csv")
+data = pd.read_csv(Path(RAW_DATA) / f"pulls1_{NUM_PULLS}.csv")
 
 ##### First create the crosswalk: ###############
 # Create the full name variable, drop the first and last names, and drop duplicates
@@ -20,20 +20,20 @@ crosswalk = data[["id", "Q1", "Q2"]].copy()
 crosswalk["full_name"] = crosswalk["Q1"] + " " + crosswalk["Q2"]
 crosswalk = crosswalk[["id", "full_name"]].drop_duplicates()
 
-# Save the crosswalk into the identified folder as a csv
-crosswalk.to_csv(Path(id_data) / "Name_crosswalk.csv", index=False)
+# Save the crosswalk into the encrypted raw folder as a csv
+crosswalk.to_csv(Path(RAW_DATA) / "Name_crosswalk.csv", index=False)
 
 # Mask the identifying variables and save
 data_masked = data.copy()
 for col in ["Q1", "Q2"]:
     data_masked[col] = "*** REMOVED FOR RESPONDENT PRIVACY ***"
 
-data_masked.to_csv(Path(raw_data) / f"pulls1_{pull_tot}_deid.csv", index=False)
+data_masked.to_csv(Path(DEID_DATA) / f"pulls1_{NUM_PULLS}_deid.csv", index=False)
 
 ######### Post-lecture exercise: ##############################################
 ##### Prepare the clean data that doesn't have direct identifiers for
 # data publication -- we want to de-identify indirect identifiers now
-data_clean = pd.read_csv(Path(clean_data) / "cleaned_data_pulls1_3.csv")
+data_clean = pd.read_csv(Path(CLEAN_DATA) / f"cleaned_data_pulls1_{NUM_PULLS}.csv")
 
 # STEP A -- Aggregate birth month to ranges and mask birth date
 # Mask birth date

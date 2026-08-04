@@ -15,8 +15,8 @@ log using output/data_validation_log.smcl, replace
 
 
 *Check to see that id uniquely identifies observations in all pulls and that IDs are in the same format.
-forvalues i = 1(1)$pull_tot { //global pull_tot set in main do-file to indicate the total pull files
-  use ${id_data}/pull`i'.dta, clear
+forvalues i = 1(1)$num_pulls { // global num_pulls set in your config file
+  import delimited "${raw_data}/pulls/pull_`i'/pull`i'.csv", clear
   *Format of ID variable?
   display as text "Dataset pull`i' ID format:"
   describe id //tells you the format of the variable
@@ -40,23 +40,29 @@ forvalues i = 1(1)$pull_tot { //global pull_tot set in main do-file to indicate 
   }   
 }
 
-*Append the pulls together. 
-append using ${id_data}/pull1.dta
-append using ${id_data}/pull2.dta
-
+*Append the pulls together.
+import delimited "${raw_data}/pulls/pull_1/pull1.csv", clear
+forvalues i = 2(1)$num_pulls {
+  preserve
+  import delimited "${raw_data}/pulls/pull_`i'/pull`i'.csv", clear
+  tempfile pull`i'
+  save `pull`i''
+  restore
+  append using `pull`i'
+}
 
 sort id Q1 Q2 pull
-save ${id_data}/pulls1_${pull_tot}.dta, replace
+save "${raw_data}/pulls1_${num_pulls}.dta", replace
 
 
 *Verify we have appropriate follow-up information on the people is consistent. (example code for reference, no adjustment required)
 
 *Make sure everyone appear exactly twice, except for in the most recent pull
 bys id Q1 Q2: gen multiple_pulls = _N
-cap assert multiple_pulls == 2 if pull != $pull_tot
+cap assert multiple_pulls == 2 if pull != $num_pulls
 if _rc != 0 {
   display in red "Some people did not have a follow up recorded in data. See the following:"
-  list id Q1 Q2 pull if multiple_pulls == 1 & pull != $pull_tot
+  list id Q1 Q2 pull if multiple_pulls == 1 & pull != $num_pulls
 }
 else {
   display as text "Follow up visits recorded for all expected individuals."

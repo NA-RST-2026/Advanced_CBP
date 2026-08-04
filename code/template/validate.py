@@ -32,8 +32,8 @@ log(f"Date: {datetime.now():%Y-%m-%d %H:%M:%S}")
 log()
 
 # Check to see that id uniquely identifies observations in all pulls and that IDs are in the same format.
-for i in range(1, pull_tot + 1):  # pull_tot set in main Python file to indicate the total pull files
-    data_pull = pd.read_csv(Path(id_data) / f"pull{i}.csv")
+for i in range(1, NUM_PULLS + 1):  # NUM_PULLS set in your config file
+    data_pull = pd.read_csv(Path(RAW_DATA) / "pulls" / f"pull_{i}" / f"pull{i}.csv")
 
     # Format of ID variable?
     log(f"Dataset pull {i} ID format:")
@@ -66,13 +66,16 @@ for i in range(1, pull_tot + 1):  # pull_tot set in main Python file to indicate
     log()
 
 # Append the pulls together
-pull_dfs = [pd.read_csv(Path(id_data) / f"pull{i}.csv") for i in range(1, pull_tot + 1)]
+pull_dfs = [
+    pd.read_csv(Path(RAW_DATA) / "pulls" / f"pull_{i}" / f"pull{i}.csv")
+    for i in range(1, NUM_PULLS + 1)
+]
 data_combined = (
     pd.concat(pull_dfs, ignore_index=True)
     .sort_values(["id", "Q1", "Q2", "pull"])
 )
 
-data_combined.to_csv(Path(id_data) / f"pulls1_{pull_tot}.csv", index=False)
+data_combined.to_csv(Path(RAW_DATA) / f"pulls1_{NUM_PULLS}.csv", index=False)
 
 # Verify we have appropriate follow-up information on the people is consistent.
 
@@ -85,7 +88,7 @@ follow_up_check = (
 # Check for missing follow-ups
 missing_followups = follow_up_check[
     (follow_up_check["multiple_pulls"] == 1)
-    & (~follow_up_check["pulls"].apply(lambda p: pull_tot in p))
+    & (~follow_up_check["pulls"].apply(lambda p: NUM_PULLS in p))
 ]
 
 if len(missing_followups) > 0:
