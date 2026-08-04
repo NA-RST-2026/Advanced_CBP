@@ -31,6 +31,8 @@ Explore the folder structure:
 ```bash
 ls
 ```
+Look through the code and data folders, to see what is and isn't there (either in terminal or in your file explorer)!
+
 ### 2. Download Just:
 
 |Platform|Commands|
