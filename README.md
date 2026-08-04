@@ -73,7 +73,7 @@ Follow the relevant steps in the below table (copied from the lecture) to create
 
 | Step | Stata | R | Python: uv |
 |------|-------|---|------------|
-| Create a blank environment folder | Create an empty folder – `mkdir custom_ado` | `install.packages("renv")`<br>`renv::init()` | `uv init`<br>`uv venv` |
+| Create a blank environment folder | Create an empty folder – `mkdir custom_ado` | `install.packages("renv")`<br>`renv::init()` | `uv init --python=3.12`<br>`uv venv` |
 | Inspect files | Folders within `custom_ado` starting with letters – “reghdfe” would be in `custom_ado/r` | Library: `renv/library/`<br>Metadata: `renv.lock`<br>Overview: `.Rprofile` | Library: `.venv/`<br>Metadata: `uv.lock`<br>Overview: `pyproject.toml` |
 | Activate that environment | `foreach fold in PLUS PERSONAL OLDPLACE{`<br>`sysdir set \`fold' "custom_ado"`<br>`}` | Automatically done with `renv::init()` | `source .venv/bin/activate` |
 | Download packages | `ssc install X`<br>`net install X, from(url)` | `install.packages("X")` | `uv add X` |
