@@ -109,6 +109,7 @@ Open the appropriate config file for your coding language, and follow the instru
 |All| The random seed <br>The num_pulls and folder path globals|
 |Stata|The version|
 |R & Stata| The working directory|
+
 Specifically, try to create globals for sub-directories in an iterative way, so that if you change the top-folder name, you don't have to change all of the sub-directory globals!
 
 *Note*: I know it feels silly to write and pull in a config file with only a few globals in it, but this is good practice for complex projects in which you might have 10s-100s of configuration globals that may change frequently!
