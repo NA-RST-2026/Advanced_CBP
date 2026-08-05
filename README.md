@@ -103,7 +103,7 @@ If you finish before we're ready to move on, try adding and then removing a coup
 Let's now build our main script and configuration files with the appropriate set up commands and globals.
 
 ### Step 1: Fill in setup commands
-Open the appropriate config file for your coding language, and follow the instructions to write the appropriate global variables. These are:
+Open the appropriate config file for your coding language ("config.do", "config.R", etc.), and follow the instructions to write the appropriate global variables. These are:
 |Language|Commands|
 |-------|------|
 |All| The random seed <br>The num_pulls and folder path globals|
