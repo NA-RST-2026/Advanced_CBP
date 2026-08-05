@@ -104,7 +104,7 @@ Let's now build our main script and configuration files with the appropriate set
 
 ### Step 1: Fill in setup commands
 Open the appropriate config file for your coding language, and follow the instructions to write the appropriate global variables. These are:
-|Language|Packages|
+|Language|Commands|
 |-------|------|
 |All| The random seed <br>The num_pulls and folder path globals|
 |Stata|The version|
